@@ -3,8 +3,7 @@ services:
     container_name: telbot-python
     build: 
       context: .
-    volumes:
-      - ./src:/src  # 호스트 시스템의 ./src 폴더를 컨테이너의 /src 폴더에 마운트
     restart: unless-stopped
     stdin_open: true
     tty: true
+    command: "nohup python telbot.py &"

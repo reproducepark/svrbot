@@ -37,6 +37,7 @@ async def send_message(bot):
     await bot.send_message(chatId,msg)
 
 async def main():
+    print("starting service...")
     bot = telegram.Bot(token = botToken)
     await send_message(bot)
     time.sleep(35640)
