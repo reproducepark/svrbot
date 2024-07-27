@@ -1,8 +1,6 @@
 services:
   telbot:
     container_name: telbot-python
-    ports:
-      - "8090:8090"
     build: 
       context: .
     volumes:
