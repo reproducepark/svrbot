@@ -1,0 +1,1 @@
+You can start the server by "docker compose up -d"
