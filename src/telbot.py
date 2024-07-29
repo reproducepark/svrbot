@@ -1,5 +1,6 @@
 import logging, os
-import asyncio, telegram, ping3, time
+import asyncio, telegram, ping3, time, pytz
+from datetime import datetime, timedelta
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -38,9 +39,21 @@ async def send_message(bot):
 
 async def main():
     print("starting service...")
+
+    timeZone = pytz.timezone('Asia/Seoul')
+
+    now = datetime.now(timeZone)
+    target = now.replace(hour=6, minute=0, second=0, microsecond=0)
+    
+    if now >= target:
+        target += timedelta(days=1)
+    timeRemaining = target - now
+    secondsRemaining = timeRemaining.total_seconds()
+
     bot = telegram.Bot(token = botToken)
     await send_message(bot)
-    time.sleep(35640)
+    
+    time.sleep(secondsRemaining)
     while True:
         await send_message(bot)
         time.sleep(43200) # 12시간 대기
